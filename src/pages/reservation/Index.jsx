@@ -39,6 +39,7 @@ const schema = yup.object({
 
 function Index() {
   const initData = {
+    userId: 0,
     productId: 1,
     totalPrice: 0,
     lat: 0,
