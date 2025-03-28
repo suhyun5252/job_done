@@ -6,7 +6,7 @@ import MyPageLayout from "../../components/MyPageLayout";
 import { Link } from "react-router-dom";
 
 function Wishlist() {
-  const ImgURL = "http://112.222.157.156:5224";
+  const ImgURL = "https://job-done.r-e.kr:52340";
   const [wishlist, setWishlist] = useState([]);
   const getWishlist = async () => {
     try {
