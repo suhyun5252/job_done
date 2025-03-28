@@ -27,7 +27,7 @@ const PfPopup = ({ isPfDetailPop, setIsPfDetailPop, portfolioId }) => {
   const [pfDetailInfoList, setPfDetailInfoList] = useRecoilState(
     PortfolioDetailInfoState,
   );
-  const BASE_URL = "http://112.222.157.156:5224";
+  const BASE_URL = "https://job-done.r-e.kr:52340";
   const businessDetail = useRecoilValue(businessDetailState);
   const businessId = businessDetail.businessId;
   const navigate = useNavigate();

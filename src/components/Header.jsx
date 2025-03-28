@@ -39,7 +39,7 @@ function Header() {
 
       const userData = res.data.resultData;
       const profileImgUrl = userData.pic
-        ? `http://112.222.157.156:5224${userData.pic}`
+        ? `https://job-done.r-e.kr:52340${userData.pic}`
         : "/images/order/default_profile.jpg";
       setProfileImg(profileImgUrl);
     } catch (error) {

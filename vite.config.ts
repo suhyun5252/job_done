@@ -14,7 +14,7 @@ export default defineConfig({
     host: "0.0.0.0",
     proxy: {
       "/api": {
-        target: "http://112.222.157.156:5224",
+        target: "https://job-done.r-e.kr:52340",
         changeOrigin: true,
         secure: false,
       },

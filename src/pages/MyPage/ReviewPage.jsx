@@ -18,7 +18,7 @@ const convertImageUrlsToFiles = async imageUrls => {
 };
 
 function ReviewPage() {
-  const picURL = "http://112.222.157.156:5224";
+  const picURL = "https://job-done.r-e.kr:52340";
   const [review, setReview] = useState([]);
   const [correctModalOpen, setCorrectModalOpen] = useState(false);
   const [selectedImages, setSelectedImages] = useState([]);
@@ -32,6 +32,8 @@ function ReviewPage() {
   const [isImgPut, setIsImgPut] = useState(false);
   const reviewsPerPage = 5;
   const [imageInfo, setImageInfo] = useState([]);
+  const [successModalOpen, setSuccessModalOpen] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
 
   const reviewList = async () => {
     try {
@@ -93,9 +95,13 @@ function ReviewPage() {
       console.log("Response after update:", res.data);
 
       if (res.status === 200) {
-        alert("리뷰가 수정되었습니다.");
-        handleReviewModalClose();
-        reviewList();
+        setSuccessMessage("리뷰가 수정되었습니다.");
+        setSuccessModalOpen(true);
+        setTimeout(() => {
+          setSuccessModalOpen(false);
+          handleReviewModalClose();
+          reviewList();
+        }, 1500);
       }
     } catch (error) {
       console.error("리뷰 수정 실패:", error);
@@ -133,9 +139,13 @@ function ReviewPage() {
         },
       });
       if (res.status === 200) {
-        alert("리뷰가 삭제되었습니다.");
-        reviewList();
-        setDeleteModalOpen(false);
+        setSuccessMessage("리뷰가 삭제되었습니다.");
+        setSuccessModalOpen(true);
+        setTimeout(() => {
+          setSuccessModalOpen(false);
+          reviewList();
+          setDeleteModalOpen(false);
+        }, 1500);
       }
     } catch (error) {
       console.log(error);
@@ -155,9 +165,9 @@ function ReviewPage() {
     setPreviewImages(prevPreviews => [...prevPreviews, ...newPreviews]);
   };
 
-  const handleRemoveClose = () => {
-    correctServiceImg();
-  };
+  // const handleRemoveClose = () => {
+  //   correctServiceImg();
+  // };
 
   const handleRemoveImage = async index => {
     if (index < imageInfo.length) {
@@ -462,6 +472,16 @@ function ReviewPage() {
               >
                 취소
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {successModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-[1000]">
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <div className="text-center text-lg font-semibold text-green-600">
+              {successMessage}
             </div>
           </div>
         </div>
